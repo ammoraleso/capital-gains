@@ -4,3 +4,6 @@
 # Exclude idea project files
 /target/idea/
 .idea/
+
+logs/
+/logs/

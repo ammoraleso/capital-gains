@@ -1,5 +1,9 @@
 package utils;
 
+import application.Main;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -8,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtils {
+
+    private static Logger logger = LoggerFactory.getLogger(FileUtils.class);
 
     /**
      * Reads a file and returns a list of lines
@@ -26,9 +32,9 @@ public class FileUtils {
                 }
             }
         }catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            logger.error("File not found");
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Error reading file " + e.getMessage());
         }
         return lines;
     }

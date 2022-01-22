@@ -1,5 +1,6 @@
 package models;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,11 +9,20 @@ import java.util.Date;
 public class Transaction extends JsonModel{
 
     @Getter @Setter
-    private String merchant;
+    private String operation;
 
     @Getter @Setter
-    private Integer amount;
+    @SerializedName(value = "unit-cost")
+    private Integer unitCost;
 
     @Getter @Setter
-    private Date time;
+    private Integer quantity;
+
+    public Transaction(String operation, Integer unitCost, Integer quantity) {
+        this.operation = operation;
+        this.unitCost = unitCost;
+        this.quantity = quantity;
+    }
+
+
 }
