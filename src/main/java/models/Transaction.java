@@ -18,11 +18,15 @@ public class Transaction extends JsonModel{
     @Getter @Setter
     private Integer quantity;
 
+    @Getter @Setter
+    private Tax tax;
+
+    public Transaction() {
+    }
+
     public Transaction(String operation, Integer unitCost, Integer quantity) {
         this.operation = operation;
         this.unitCost = unitCost;
         this.quantity = quantity;
     }
-
-
 }

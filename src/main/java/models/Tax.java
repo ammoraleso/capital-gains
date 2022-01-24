@@ -1,10 +1,12 @@
 package models;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Tax {
+public class Tax extends JsonModel {
 
     @Getter @Setter
-    private Integer tax;
+    @SerializedName(value = "tax")
+    private Integer amount;
 }

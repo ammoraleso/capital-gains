@@ -4,6 +4,7 @@ package application;
 import controllers.OperationController;
 import lombok.Getter;
 import lombok.Setter;
+import models.Tax;
 import models.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,16 +21,18 @@ public class Main {
 
     @Getter @Setter
     private static final List<String> output = new ArrayList<>();
-
+    private static ArrayList<Tax> taxes = null;
     public static void main(String[] args) {
+
 
         // Read jsons from file
         List<String> lines = FileUtils.readLines("src/main/resources/operations.txt");
         Map<Integer,ArrayList<Transaction>> operations = OperationController.createOperations(lines);
-        operations.forEach((index,transaction) -> {
-            logger.info("Operation-" + index + ": ");
-            logger.info( transaction.toString());
-        });
+        for (ArrayList<Transaction> value : operations.values()) {
+            taxes = new ArrayList<>();
+            taxes = OperationController.calculateTaxes(value);
+            System.out.println(Tax.ObjectToJson(taxes));
+        }
     }
 
 

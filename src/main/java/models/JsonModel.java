@@ -12,18 +12,17 @@ public class JsonModel {
 
     protected static final Gson gson = new Gson();
 
-    public static <T> T convertStringToJson(String jsonString , Type classOfT) {
-        JsonObject jsonObject = new JsonObject();
+    public static ArrayList<?> convertJsonArrayToArrayList(String jsonString, Type classOfT) {
+        Type founderListType = null;
         switch (classOfT.getTypeName()) {
-        case "models.Transaction":
-            jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
+            case "models.Transaction":
+                founderListType = new TypeToken<ArrayList<Transaction>>(){}.getType();
         }
-        return gson.fromJson(jsonObject, classOfT);
+        ArrayList<?> arrayObject = gson.fromJson(jsonString, founderListType);
+        return arrayObject;
     }
 
-    public static <T> ArrayList<T> convertJsonArrayToArrayList(String jsonString , Type classOfT) {
-        Type userListType = new TypeToken<ArrayList<T>>(){}.getType();
-        ArrayList<T> arrayObject = gson.fromJson(jsonString, userListType);
-        return arrayObject;
+    public static <T> String ObjectToJson(T object) {
+        return gson.toJson(object);
     }
 }
