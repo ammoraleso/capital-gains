@@ -14,6 +14,7 @@ public class OperationControllerTest {
     private static ArrayList<Transaction> operationWithLossPot = new ArrayList();
     private static List<String> lines = new ArrayList();
     private static List<String> badLines = new ArrayList();
+    private static OperationController operationController = new OperationController();
 
     @BeforeAll
     private static void setUp() {
@@ -28,7 +29,7 @@ public class OperationControllerTest {
 
     @Test
     public void calculateTaxesOk() {
-        ArrayList<Tax> taxesTest = OperationController.calculateTaxes(operationWithLossPot);
+        ArrayList<Tax> taxesTest = operationController.calculateTaxes(operationWithLossPot);
         assert taxesTest.size() == 5;
         assert taxesTest.get(0).getAmount() == 0;
         assert taxesTest.get(1).getAmount() == 0;

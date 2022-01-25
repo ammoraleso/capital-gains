@@ -20,6 +20,7 @@ public class Main {
     private static Logger logger = LoggerFactory.getLogger(Main.class);
 
     private static ArrayList<Tax> taxes = null;
+    private static OperationController operationController;
 
     public static void main(String[] args) {
             try {
@@ -30,8 +31,9 @@ public class Main {
                 Map<Integer,ArrayList<Transaction>> operations = OperationController.createOperations(lines);
                 for (ArrayList<Transaction> value : operations.values()) {
                     try {
+                        operationController = new OperationController();
                         taxes = new ArrayList<>();
-                        taxes = OperationController.calculateTaxes(value);
+                        taxes = operationController.calculateTaxes(value);
                         FileUtils.writeToFile(Tax.ObjectToJson(taxes) + "\n","src/main/resources/output.txt");
                         System.out.println(Tax.ObjectToJson(taxes));
                     } catch (IllegalArgumentException e){

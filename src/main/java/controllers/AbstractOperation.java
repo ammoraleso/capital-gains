@@ -8,6 +8,7 @@ import models.Transaction;
 import java.util.ArrayList;
 
 public abstract class AbstractOperation {
+
     @Getter @Setter
     public ArrayList<Tax> taxes = new ArrayList<>();
 

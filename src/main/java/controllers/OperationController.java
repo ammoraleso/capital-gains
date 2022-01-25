@@ -10,14 +10,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class OperationController {
+public class OperationController extends AbstractOperation{
 
     private static Logger logger = LoggerFactory.getLogger(OperationController.class);
 
-    private static ArrayList<Tax> taxes;
-
     private static BuyController buyController;
     private static SellController sellController;
+
+    public OperationController() {
+        buyController = new BuyController();
+        sellController = new SellController();
+    }
 
     /**
      * Create a new map of operations from an array of lines or strings
@@ -42,18 +45,12 @@ public class OperationController {
      * Calculate taxes from a list of transactions
      * @param operations List of transactions
      */
-    public static ArrayList<Tax> calculateTaxes(ArrayList<Transaction> operations) {
-        loadControllers();
-
+    @Override
+    public ArrayList<Tax> calculateTaxes(ArrayList<Transaction> operations) {
         taxes = buyController.calculateTaxes(operations);
         sellController.setBaseTransaction(buyController.getBaseTransaction());
         ArrayList<Tax> sellerTaxes = sellController.calculateTaxes(operations);
         taxes.addAll(sellerTaxes);
         return taxes;
-    }
-
-    private static void loadControllers() {
-        buyController = new BuyController();
-        sellController = new SellController();
     }
 }
