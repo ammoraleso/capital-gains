@@ -13,7 +13,7 @@ public class BuyController extends AbstractOperation {
      * @param operationBuy List of transactions with operation buy
      * @return Weighted average price
      */
-    private Transaction calculateWeightedAveragePrice(ArrayList<Transaction> operationBuy) {
+    public Transaction calculateWeightedAveragePrice(ArrayList<Transaction> operationBuy) {
         double weightedAveragePrice = 0;
         int totalStocks = 0;
         for (Transaction transaction : operationBuy) {

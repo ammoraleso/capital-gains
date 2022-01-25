@@ -31,8 +31,7 @@ public class OperationController {
                 operations.put(index, (ArrayList<Transaction>) Transaction.convertJsonArrayToArrayList(lines.get(index), Transaction.class));
                 } catch (com.google.gson.JsonSyntaxException e) {
                     throw new com.google.gson.JsonSyntaxException(e.getMessage());
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     logger.error("Exception converting Json Array to Array List", ex);
                 } ;
             }
