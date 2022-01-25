@@ -12,6 +12,12 @@ public class JsonModel {
 
     protected static final Gson gson = new Gson();
 
+    /**
+     * Convert a json string to an object
+     * @param jsonString the json string
+     * @param classOfT the class of the object
+     * @return the object
+     */
     public static ArrayList<?> convertJsonArrayToArrayList(String jsonString, Type classOfT) {
         Type founderListType = null;
         switch (classOfT.getTypeName()) {
